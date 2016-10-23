@@ -11,9 +11,8 @@ def clientThread(conn, addr):
     print("mouse.py: received message:"+received_msg)
     if (received_msg == "MEOW"):
       conn.send(bytes("OUCH", 'UTF-8'));
-      print("mouse.py: Sent ouch message to attacking cat. Terminating")
+      print("mouse.py: Sent ouch message to attacking cat.")
       conn.close()
-      thread.interrupt_main()
     if not buf:
       break
   conn.close()

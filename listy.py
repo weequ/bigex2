@@ -24,6 +24,7 @@ def client_reader_thread(conn, addr):
     if not buf:
       break
     received_msg = buf.decode('UTF-8')
+    print("listy.py: writing "+received_msg+" to cmsg file")
     append_to_cmsg_file(received_msg+"\n")
   conn.close();
 
