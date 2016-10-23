@@ -74,7 +74,7 @@ while len(unsearched_nodes) > 0 and count < 10:
     node_to_search = unsearched_nodes.pop()
     start_chase_cat(node_to_search, OPERATION_TYPE_SEARCH, CAT_NAME_JAZZY)
 
-  new_line = wait_new_line_in_cmsg_file()
-  read_cmsg_file()
-  unsearched_nodes = all_nodes-searched_nodes
+  #new_line = wait_new_line_in_cmsg_file()
+  #read_cmsg_file()
+  #unsearched_nodes = all_nodes-searched_nodes
   
