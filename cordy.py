@@ -11,7 +11,7 @@ def start_chase_cat(host, operation_type, cat_name):
   process = subprocess.Popen("ssh ukko042.hpc.cs.helsinki.fi ls", shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
   output,stderr = process.communicate()
   status = process.poll()
-  print(output)
+  print(output.decode("UTF-8"))
 
 print("ok")
 start_chase_cat("asd", "asd", "asd")
