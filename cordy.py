@@ -61,7 +61,10 @@ read_ukkonodes_file()
 read_cmsg_file()
 unsearched_nodes = all_nodes - searched_nodes
 
-while len(unsearched_nodes) > 0:
+count = 0
+
+while len(unsearched_nodes) > 0 and count < 10:
+  count = count+1
   print(unsearched_nodes)
   #Try to explore with both cats
   if (CAT_NAME_CATTY not in exploring_cats):
@@ -73,5 +76,5 @@ while len(unsearched_nodes) > 0:
 
   new_line = wait_new_line_in_cmsg_file()
   read_cmsg_file()
-  unsearched_nodes = all_nodes.difference_update(searched_nodes)
+  unsearched_nodes = all_nodes-searched_nodes
   
