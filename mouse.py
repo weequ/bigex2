@@ -28,12 +28,12 @@ host=socket.gethostname()
 port = read_port_from_file()
 
 s.bind((host,port))
-print("listening connections");
+print("mouse.py: listening connections");
 s.listen(10)
 while True:
   try:
     conn, addr = s.accept()
-    print("new connection");
+    print("mouse.py: got new connection");
     _thread.start_new_thread(clientThread, (conn, addr))
   except:
     break

@@ -21,11 +21,14 @@ def read_listy_location_from_file():
 listy_location = read_listy_location_from_file()
 
 def send_to_listy(msg):
-  s = socket.socket()
-  #host = socket.gethostname()
-  print("chase_cat.py: trying to connect to listy at "+listy_location+":"+str(port));
-  s.connect((listy_location, port))
-  s.send(bytes(msg, 'UTF-8'))
+  try:
+    s = socket.socket()
+    #host = socket.gethostname()
+    print("chase_cat.py: trying to send message '"+msg+"' to listy at "+listy_location+":"+str(port));
+    s.connect((listy_location, port))
+    s.send(bytes(msg, 'UTF-8'))
+  except Exception ex:
+    print("chase_cat.py: got exception while trying to connect listy:"+ex)
 
 def get_current_ukko():
   s = socket.socket()
@@ -47,6 +50,7 @@ try:
     buf = s.recv(1024)
     received_msg = buf.decode('UTF-8')
     if (received_msg == "OUCH"):
+      print("chase_cat.py: received OUCH from MOUSE")
       send_to_listy("G "+current_ukko+" "+cat_name);
   if (operation_type == OPERATION_TYPE_SEARCH):
     send_to_listy("F "+current_ukko+" "+cat_name);
