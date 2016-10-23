@@ -13,13 +13,21 @@ def clientThread(conn, addr):
     if not buf:
       break
   conn.close()
+
+
+def read_port_from_file():
+  f = open("port_number", 'r')
+  for line in f:
+    port = int(line)
+    return port#return the first line as int
   
 
 s=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 host=socket.gethostname()
+port = read_port_from_file()
 
-s.bind((host,12345))
+s.bind((host,port))
 print("listening connections");
 s.listen(10)
 while True:
