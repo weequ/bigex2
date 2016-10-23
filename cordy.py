@@ -8,7 +8,7 @@ OPERATION_TYPE_ATTACK = "A"
 OPERATION_TYPE_SEARCH = "S"
 
 def start_chase_cat(host, operation_type, cat_name):
-  process = subprocess.Popen("ssh anttkaik@ukko042.hpc.cs.helsinki.fi ls", shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+  process = subprocess.Popen("ssh ukko042.hpc.cs.helsinki.fi ls", shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
   output,stderr = process.communicate()
   status = process.poll()
   print(output)
