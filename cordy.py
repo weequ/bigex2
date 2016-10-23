@@ -50,8 +50,8 @@ def get_new_line_in_cmsg_file():
 
 
 read_ukkonodes_file()
-#read_cmsg_file()
 
+#Exploring the nodes start:
 first_line = False
 while (not first_line):
   node_to_search = unsearched_nodes.pop()
@@ -64,22 +64,25 @@ while (not first_line):
   if (not first_line and len(unsearched_nodes) <= 0):
     print("cordy.py: all nodes have been explored but mouse was not found")
     sys.exit()#All nodes have been visited without fiding the mouse
+#Exploring the nodes end.
 
 if (first_line.result_type != RESULT_TYPE_FOUND):
   print("cordy.py: first result type in cmsg should be F (FOUND), but it wasn't")
   sys.exit()#first result type should be F (FOUND) but it wasn't
 
+#Search the mouse with the other cat:
 if (first_line.catname == CAT_NAME_JAZZY):
   start_chase_cat(first_line.ukkonode, OPERATION_TYPE_SEARCH, CAT_NAME_CATTY)
-
 if (first_line.catname == CAT_NAME_CATTY): 
   start_chase_cat(first_line.ukkonode, OPERATION_TYPE_SEARCH, CAT_NAME_JAZZY)
-
 time.sleep(12)
+
 second_line = get_new_line_in_cmsg_file()
 if (second_line.result_type != RESULT_TYPE_FOUND):
   print("cordy.py: second result type in cmsg should be F (FOUND), but it wasn't")
   sys.exit()#second result type should be F (FOUND) but it wasn't
+
+#Attack the mouse with one of the cats (always with Jazzy)
 start_chase_cat(second_line.ukkonode, OPERATION_TYPE_ATTACK, CAT_NAME_JAZZY)
 
 time.sleep(14)#14 comes from 6+8 (time it takes for cat to attack + time the cat waits for MEOW)

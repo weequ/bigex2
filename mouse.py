@@ -12,7 +12,7 @@ def clientThread(conn, addr):
     if (received_msg == "MEOW"):
       conn.send(bytes("OUCH", 'UTF-8'));
       print("mouse.py: Sent ouch message to attacking cat.")
-      conn.close()
+      break;
     if not buf:
       break
   conn.close()
