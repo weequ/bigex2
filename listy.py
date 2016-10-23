@@ -38,7 +38,7 @@ s.listen(10)
 while True:
   try:
     conn, addr = s.accept()
-    _thread.start_new_thread(clientReaderThread, (conn, addr))
+    _thread.start_new_thread(client_reader_thread, (conn, addr))
   except Exception as ex:
     print(ex)
   

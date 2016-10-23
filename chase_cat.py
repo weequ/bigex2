@@ -16,7 +16,7 @@ port = read_port_from_file()
 def read_listy_location_from_file():
   f = open("listy_location", 'r')
   for line in f:
-    return line+".hpc.cs.helsinki.fi"#return the first line
+    return line.rstrip()+".hpc.cs.helsinki.fi"#return the first line
 
 listy_location = read_listy_location_from_file()
 
