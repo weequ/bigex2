@@ -46,7 +46,7 @@ def get_new_line_in_cmsg_file():
         result.ukkonode = lineparts[1]
         result.catname = lineparts[2]
         return result
-  return false#No new line found
+  return False#No new line found
 
 
 read_ukkonodes_file()
@@ -70,10 +70,10 @@ if (first_line.result_type != RESULT_TYPE_FOUND):
   sys.exit()#first result type should be F (FOUND) but it wasn't
 
 if (first_line.catname == CAT_NAME_JAZZY):
-  start_chase_cat(line.ukkonode, OPERATION_TYPE_SEARCH, CAT_NAME_CATTY)
+  start_chase_cat(first_line.ukkonode, OPERATION_TYPE_SEARCH, CAT_NAME_CATTY)
 
 if (first_line.catname == CAT_NAME_CATTY): 
-  start_chase_cat(line.ukkonode, OPERATION_TYPE_SEARCH, CAT_NAME_JAZZY)
+  start_chase_cat(first_line.ukkonode, OPERATION_TYPE_SEARCH, CAT_NAME_JAZZY)
 
 time.sleep(12)
 second_line = get_new_line_in_cmsg_file()
