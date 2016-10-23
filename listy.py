@@ -24,7 +24,7 @@ def client_reader_thread(conn, addr):
     if not buf:
       break
     received_msg = buf.decode('UTF-8')
-    append_to_csmg_file(received_msg)
+    append_to_cmsg_file(received_msg)
   conn.close();
 
 clear_cmsg_file()
