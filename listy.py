@@ -10,12 +10,12 @@ def read_port_from_file():
 
 def append_to_cmsg_file(msg):
   with open("cmsg", 'a+') as f:
-    f.write(msg)#+\n
+    f.write(msg)
 
 #Clears the contents of the cmsg file. Creates a new one if it does not exist.
 def clear_cmsg_file():
   with open("cmsg", 'w+') as f:
-    print("done")
+    print("listy.py: cmsg cleared")
 
 
 def client_reader_thread(conn, addr):
@@ -24,7 +24,7 @@ def client_reader_thread(conn, addr):
     if not buf:
       break
     received_msg = buf.decode('UTF-8')
-    append_to_cmsg_file(received_msg)
+    append_to_cmsg_file(received_msg+"\n")
   conn.close();
 
 clear_cmsg_file()
@@ -40,5 +40,5 @@ while True:
     conn, addr = s.accept()
     _thread.start_new_thread(client_reader_thread, (conn, addr))
   except Exception as ex:
-    print(ex)
+    print("listy_py: got exception: "+ex)
   

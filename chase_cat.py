@@ -32,28 +32,22 @@ def get_current_ukko():
   return socket.gethostname().split(".")[0]
 
 operation_type = sys.argv[1]
-if (operation_type == OPERATION_TYPE_SEARCH):
-  print("Search");
-if (operation_type == OPERATION_TYPE_ATTACK):
-  print("Attack");
-
 cat_name = sys.argv[2]
-
 
 s = socket.socket()
 host = socket.gethostname()
 try:
   s.connect((host,port))
-  print("Mouse port was open");
   current_ukko = get_current_ukko();
+  print("chase_cat.py: Mouse port was open in current_ukko");
   if (operation_type == OPERATION_TYPE_ATTACK):
+    s.settimeout(6)
     s.send(bytes("MEOW", 'UTF-8'))
-    buf = s.recv(1024);
+    s.settimeout(8)
+    buf = s.recv(1024)
     received_msg = buf.decode('UTF-8')
     if (received_msg == "OUCH"):
       send_to_listy("G "+current_ukko+" "+cat_name);
   if (operation_type == OPERATION_TYPE_SEARCH):
     send_to_listy("F "+current_ukko+" "+cat_name);
 except Exception as ex:
-  print("mouse not found")
-  print(ex)
