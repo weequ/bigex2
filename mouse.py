@@ -13,7 +13,7 @@ def clientThread(conn, addr):
       conn.send(bytes("OUCH", 'UTF-8'));
       print("mouse.py: Sent ouch message to attacking cat. Terminating")
       conn.close()
-      sys.exit()
+      thread.interrupt_main()
     if not buf:
       break
   conn.close()
