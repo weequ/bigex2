@@ -1,4 +1,5 @@
 import socket
+import sys
 import _thread
 
 def read_port_from_file():
@@ -8,8 +9,13 @@ def read_port_from_file():
       return port;
 
 def append_to_cmsg_file(msg):
-  with open("cmsg", 'a') as f:
-     f.write(msg)#+\n
+  with open("cmsg", 'a+') as f:
+    f.write(msg)#+\n
+
+#Clears the contents of the cmsg file. Creates a new one if it does not exist.
+def clear_cmsg_file():
+  with open("cmsg", 'w+') as f:
+    print("done")
 
 
 def client_reader_thread(conn, addr):
@@ -21,7 +27,7 @@ def client_reader_thread(conn, addr):
     append_to_csmg_file(received_msg)
   conn.close();
 
-
+clear_cmsg_file()
 port = read_port_from_file()
 s=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
