@@ -27,6 +27,9 @@ def send_to_listy(msg):
   s.connect((listy_location, port))
   s.send(bytes(msg, 'UTF-8'))
 
+def get_current_ukko():
+  s = socket.socket()
+  return socket.gethostname().split(".")[0]
 
 operation_type = sys.argv[1]
 if (operation_type == OPERATION_TYPE_SEARCH):
@@ -42,14 +45,15 @@ host = socket.gethostname()
 try:
   s.connect((host,port))
   print("Mouse port was open");
+  current_ukko = get_current_ukko();
   if (operation_type == OPERATION_TYPE_ATTACK):
     s.send(bytes("MEOW", 'UTF-8'))
     buf = s.recv(1024);
     received_msg = buf.decode('UTF-8')
     if (received_msg == "OUCH"):
-      send_to_listy("G ukkoXXX "+cat_name);
+      send_to_listy("G "+current_ukko+" "+cat_name);
   if (operation_type == OPERATION_TYPE_SEARCH):
-    send_to_listy("F ukkoXXX "+cat_name);
+    send_to_listy("F "+current_ukko+" "+cat_name);
 except Exception as ex:
   print("mouse not found")
   print(ex)

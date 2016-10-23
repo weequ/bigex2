@@ -50,7 +50,7 @@ def get_new_line_in_cmsg_file():
         line_count = current_line
         print("new line detected")
         return line.rstrip()
-  return false
+  return False
 
 
 read_ukkonodes_file()
