@@ -23,6 +23,7 @@ listy_location = read_listy_location_from_file()
 def send_to_listy(msg):
   s = socket.socket()
   #host = socket.gethostname()
+  print("trying to connect to listy at "+listy_location+":"+str(port));
   s.connect((listy_location, port))
   s.send(bytes(msg, 'UTF-8'))
 
