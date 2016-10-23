@@ -16,12 +16,13 @@ port = read_port_from_file()
 def read_listy_location_from_file():
   f = open("listy_location", 'r')
   for line in f:
-    return line#return the first line
+    return line+".hpc.cs.helsinki.fi"#return the first line
+
 listy_location = read_listy_location_from_file()
 
 def send_to_listy(msg):
   s = socket.socket()
-  host = socket.gethostname()
+  #host = socket.gethostname()
   s.connect((listy_location, port))
   s.send(bytes(msg, 'UTF-8'))
 

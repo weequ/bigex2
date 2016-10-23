@@ -7,14 +7,14 @@ line_count = -1;
 OPERATION_TYPE_ATTACK = "A"
 OPERATION_TYPE_SEARCH = "S"
 
-def start_chase_cat(host, operation_type, cat_name):
-  process = subprocess.Popen("ssh ukko042.hpc.cs.helsinki.fi ls", shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+def start_chase_cat(ukkonode, operation_type, cat_name):
+  process = subprocess.Popen("ssh "+ukkonode+".hpc.cs.helsinki.fi python3 chase_cat.py "+operation_type+" "+cat_name, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
   output,stderr = process.communicate()
   status = process.poll()
   print(output.decode("UTF-8"))
 
 print("ok")
-start_chase_cat("asd", "asd", "asd")
+start_chase_cat("ukko163", "S", "Catty")#Jazzy
 sys.exit(0)
 
 while True:
