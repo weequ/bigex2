@@ -32,7 +32,7 @@ host=socket.gethostname()
 port = read_port_from_file()
 
 s.bind((host,port))
-print("mouse.py: listening connections");
+print("mouse.py: accepting connections");
 s.listen(10)
 while True:
   try:

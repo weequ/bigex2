@@ -34,11 +34,11 @@ s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 host=socket.gethostname()
 s.bind((host,port))
 s.listen(10)
-
+print("listy.py: accepting connections")
 while True:
   try:
     conn, addr = s.accept()
     _thread.start_new_thread(client_reader_thread, (conn, addr))
   except Exception as ex:
-    print("listy_py: got exception: "+ex)
+    print("listy_py: got exception while accepting connections: "+ex)
   

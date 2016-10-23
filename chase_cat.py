@@ -55,4 +55,5 @@ try:
   if (operation_type == OPERATION_TYPE_SEARCH):
     send_to_listy("F "+current_ukko+" "+cat_name);
 except:
+  #Could not find the mouse on this node
   pass
