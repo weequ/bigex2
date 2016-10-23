@@ -27,7 +27,7 @@ def send_to_listy(msg):
     print("chase_cat.py: trying to send message '"+msg+"' to listy at "+listy_location+":"+str(port));
     s.connect((listy_location, port))
     s.send(bytes(msg, 'UTF-8'))
-  except Exception ex:
+  except Exception as ex:
     print("chase_cat.py: got exception while trying to connect listy:"+ex)
 
 def get_current_ukko():
@@ -50,7 +50,7 @@ try:
     buf = s.recv(1024)
     received_msg = buf.decode('UTF-8')
     if (received_msg == "OUCH"):
-      print("chase_cat.py: received OUCH from MOUSE")
+      print("chase_cat.py: received OUCH from the mouse")
       send_to_listy("G "+current_ukko+" "+cat_name);
   if (operation_type == OPERATION_TYPE_SEARCH):
     send_to_listy("F "+current_ukko+" "+cat_name);

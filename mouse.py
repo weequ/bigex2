@@ -1,5 +1,6 @@
 import socket
 import _thread
+import sys
 
 def clientThread(conn, addr):
   while True:
@@ -7,9 +8,12 @@ def clientThread(conn, addr):
     if not buf:
       break
     received_msg = buf.decode('UTF-8')
-    print(received_msg)
+    print("mouse.py: received message:"+received_msg)
     if (received_msg == "MEOW"):
       conn.send(bytes("OUCH", 'UTF-8'));
+      print("mouse.py: Sent ouch message to attacking cat. Terminating")
+      conn.close()
+      sys.exit()
     if not buf:
       break
   conn.close()
@@ -35,5 +39,6 @@ while True:
     conn, addr = s.accept()
     print("mouse.py: got new connection");
     _thread.start_new_thread(clientThread, (conn, addr))
-  except:
+  except Exception as ex:
+    print("mouse.py : got exception while accepting connections:"+ex)
     break
