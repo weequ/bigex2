@@ -40,6 +40,7 @@ s = socket.socket()
 host = socket.gethostname()
 try:
   s.connect((host,port))
+  print("Mouse port was open");
   if (operation_type == OPERATION_TYPE_ATTACK):
     s.send(bytes("MEOW", 'UTF-8'))
     buf = s.recv(1024);
@@ -48,5 +49,6 @@ try:
       send_to_listy("G ukkoXXX "+cat_name);
   if (operation_type == OPERATION_TYPE_SEARCH):
     send_to_listy("F ukkoXXX "+cat_name);
-except:
+except Exception as ex:
   print("mouse not found")
+  print(ex)
